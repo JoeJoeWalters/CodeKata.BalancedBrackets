@@ -49,6 +49,7 @@ namespace Core
                 bracketBucket['['] == bracketBucket[']']);
             */
 
+            // Stage 2
             Stack<char> expectedCloses = new Stack<char>();
 
             foreach (char x in testString)
