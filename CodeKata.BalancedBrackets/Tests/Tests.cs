@@ -38,5 +38,37 @@ namespace Tests
             // ASSERT
             result.Should().BeFalse();
         }
+
+        [Theory]
+        [InlineData("{()}")]
+        [InlineData("([])")]
+        [InlineData("[{}]")]
+        public void When_Multiple_Pairs_Do_They_Balance(string testString)
+        {
+            // ARRANGE
+            var bracketChecker = new BalancedBracketsChecker();
+
+            // ACT
+            var result = bracketChecker.Test(testString);
+
+            // ASSERT
+            result.Should().BeTrue();
+        }
+
+        [Theory]
+        [InlineData("{(})")]
+        [InlineData("([)]")]
+        [InlineData("[{]}")]
+        public void When_Multiple_Pairs_Out_Of_Line_Do_They_Not_Balance(string testString)
+        {
+            // ARRANGE
+            var bracketChecker = new BalancedBracketsChecker();
+
+            // ACT
+            var result = bracketChecker.Test(testString);
+
+            // ASSERT
+            result.Should().BeFalse();
+        }
     }
 }
