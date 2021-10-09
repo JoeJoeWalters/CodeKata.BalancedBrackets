@@ -52,16 +52,16 @@ namespace Core
             // Stage 2
             Stack<char> expectedCloses = new Stack<char>();
 
-            foreach (char x in testString)
+            foreach (char character in testString)
             {
-                if (pairs.ContainsKey(x))
+                if (pairs.ContainsKey(character))
                 {
-                    expectedCloses.Push(pairs[x]);
+                    expectedCloses.Push(pairs[character]);
                 }
                 else
                 {
-                    char y = expectedCloses.Pop();
-                    if (x != y) return false;
+                    char expectedCharacter = expectedCloses.Pop();
+                    if (character != expectedCharacter) return false;
                 }
             }
 
