@@ -13,6 +13,12 @@ namespace Core
     public class BalancedBracketsChecker
     {
         private List<char> validBrackets = new List<char>() {'{', '}', '(', ')', '[', ']'};
+        private Dictionary<char, char> pairs = new Dictionary<char, char>()
+        {
+            {'{', '}' },
+            {'(', ')' },
+            {'[', ']' }
+        };
 
         private Dictionary<Char, int> bracketBucket = new Dictionary<char, int>()
         {
@@ -30,6 +36,8 @@ namespace Core
 
         public Boolean Test(string testString)
         {
+            // Stage 1
+            /*
             foreach (char key in validBrackets)
             {
                 if (testString.Contains(key))
@@ -39,6 +47,24 @@ namespace Core
             return (bracketBucket['{'] == bracketBucket['}'] &&
                 bracketBucket['('] == bracketBucket[')'] &&
                 bracketBucket['['] == bracketBucket[']']);
+            */
+
+            Stack<char> expectedCloses = new Stack<char>();
+
+            foreach (char x in testString)
+            {
+                if (pairs.ContainsKey(x))
+                {
+                    expectedCloses.Push(pairs[x]);
+                }
+                else
+                {
+                    char y = expectedCloses.Pop();
+                    if (x != y) return false;
+                }
+            }
+
+            return true;
         }
     }
 }
