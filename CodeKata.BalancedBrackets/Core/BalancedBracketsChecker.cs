@@ -3,13 +3,6 @@ using System.Collections.Generic;
 
 namespace Core
 {
-
-    public class BracketBucket
-    {
-        private KeyValuePair<string, int> Left;
-        private KeyValuePair<string, int> Right;
-    }
-
     public class BalancedBracketsChecker
     {
         private List<char> validBrackets = new List<char>() {'{', '}', '(', ')', '[', ']'};
